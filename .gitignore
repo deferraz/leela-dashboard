@@ -1,0 +1,5 @@
+*,pyc
+build
+debian/files
+debian/leela-dashboard*
+leela_dashboard.egg-info

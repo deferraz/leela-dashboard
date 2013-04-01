@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Dashboard CTLinux</title>
+    <link rel="stylesheet" type="text/css" href="http://developer.locaweb.com.br/assets/0.46.0/locastyle.css">
+    <script type="text/javascript" src="http://developer.locaweb.com.br/assets/0.46.0/locastyle.js"></script>
+</head>
+
+<body>
+
+<header class="headerPrincipal">
+    <div class="limite">
+        <h1 class="serviceName"><a href="/">Leela Dashboard</a></h1>
+    </div>
+
+    <menu id="menuPrincipal">
+        <ul>
+            <li class="selected"><a href="/" class="ico-home">Home</a></li>
+            {% for cluster in cvalues['cluster_group'] %}
+            <li><a href="/cluster_group/{{ cluster }}" class="ico-cloud">{{ cluster }}</a>
+            <ul>
+                {% for farm in cvalues[cluster] %}
+                    <li><a href="/cluster_group/{{ cluster }}/{{ farm }}">{{ farm }}</a>
+                {% endfor %}
+            </ul>
+            </li>
+            {% endfor %}
+            <li>
+                <form action="/server">
+                <div class="input-prepend">
+                    <span class="add-on">Search</span>
+                    <input name="servername" type="text">
+                </div>
+                </form>
+            </li>
+        </ul>
+    </menu>
+</header>
+
+{% block content %}{% endblock %}
+
+
+
+</body>
+</html>

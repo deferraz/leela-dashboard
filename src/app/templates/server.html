@@ -1,0 +1,62 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+    {% for metric in cvalues['metrics'] %}
+    <div id="{{ metric|replace('.','_') }}_{{ servername }}" style="width: 100%; height: 450px; margin: 8px auto;"></div>
+    {% if legend != False %}
+        <div id="{{ metric|replace('.','_') }}_{{ servername }}_legend"></div>
+        {% else %}
+        <div id="{{ metric|replace('.','_') }}_{{ servername }}_legend" style="display: none;"></div>
+    {% endif %}
+    {% endfor %}
+    <script type="text/javascript" src="https://raw.github.com/HumbleSoftware/Flotr2/master/flotr2.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="https://raw.github.com/locaweb/leela-client/master/src/javascript/widget/flotr2_backend.js"></script>
+    <script type="text/javascript" src="https://raw.github.com/locaweb/leela-client/master/src/javascript/widget/leela-widget.min.js"></script>
+
+    <script type="text/javascript">
+    var qparam = function (name, defval) {
+        var r = new RegExp("[\\?&]" + name + "=([^#&]*)");
+        var m = r.exec(window.location.search);
+        if (m === null)
+            return(defval);
+        else
+            return(decodeURIComponent(m[1].replace(/\+/g, " ")));
+
+    };
+
+    var res = 60;
+    var yformatter = function (n) { return(n); };
+
+    {% for metric in cvalues['metrics'] %}
+    var widget = LEELA.widget(jQuery("#{{ metric|replace('.','_') }}_{{ servername }}"), 
+                    { yaxis: { labels: { formatter: yformatter }, min: 0 },
+                    grid: { verticalLines: false },
+                    chart:  { type: "lines" },
+                    legend: { container: $("#{{ metric|replace('.','_') }}_{{ servername }}_legend") },
+                    title: "{{ metric }} Pulley {{ servername }}"
+                });
+
+    var key   = "{{ servername }}.{{ metric }}";
+    var keys  = key.split(", ");
+    jQuery("#key").val(key);
+    jQuery("#resolution").val(res);
+    jQuery("input:radio[name=yformat]").each(function() {
+        if (this.value === yformat)
+            this.checked = true;
+    });
+    for (var k = 0; k < keys.length; k += 1) {
+    {% if week != False %}
+        var uri = "https://planetexpress.futurama.locaweb.com.br:6969" + "/v1/pastweek/" + encodeURIComponent(keys[k]);
+    {% else %}
+        var uri = "https://planetexpress.futurama.locaweb.com.br:6969" + "/v1/past24/" + encodeURIComponent(keys[k]);
+    {% endif %}
+        jQuery.ajax(uri, {dataType: "jsonp", success: (res == 0 ? widget.render : LEELA.f.dot(widget.render, LEELA.f.average(res)))});
+    }
+
+    {% endfor %}
+
+    </script>
+
+{% endblock %}

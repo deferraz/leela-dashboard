@@ -1,0 +1,21 @@
+metrics:
+    - loadavg.1
+    - memory.main.used
+    - cpu.cpu.user
+    - apache_default.req/s
+
+cluster_group:
+    - Apache Clusters
+
+pulley:
+    - cluster01
+    - cluster02
+
+cluster01:
+    - myserver01
+    - myserver02
+
+cluster02:
+    - myserver03
+    - myserver04
+    - myserver08

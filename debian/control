@@ -1,0 +1,12 @@
+Source: leela-dashboard
+Section: python
+Priority: extra
+Maintainer: Andre Ferraz <andre.ferraz@locaweb.com.br>
+Build-Depends: debhelper (>= 7.0.50~), python
+Standards-Version: 3.8.4
+
+Package: leela-dashboard
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}, python-flask
+Description: Simple Dashboard for Leela System
+ This is the dashboard system for the Leela system

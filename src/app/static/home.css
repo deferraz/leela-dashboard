@@ -1,0 +1,43 @@
+.banners { 
+  overflow: hidden;    
+  position: relative;  
+  width: 100%;
+}
+
+.banners-slider {                                           
+  width: 200000px;                                          
+  /*height: 150px;*/                                        
+}                                                           
+                                                            
+.banner {                                                   
+  width: 859px;                                             
+  /*height: 150px;*/                                        
+  min-height:100px;                                         
+  padding:20px 50px 0;                                      
+  position: relative;                                       
+  float: left;                                              
+  list-style:none;
+}                                                           
+                                                            
+p.banner-top {                                              
+  margin-bottom:12px;                                       
+}                                                           
+                                                            
+.page_navigation {                                          
+  margin: 5px;                                              
+}                                                           
+                                                            
+.banner-navigation {                               
+  display: block;                                  
+  width:50px;                                      
+  height:99%;                                      
+  position: absolute;                              
+  top:0;                                           
+  background-color: #F7F7F7;                       
+  background-repeat: no-repeat;                    
+  background-position:50% 45%;                     
+  text-indent:-5000px;                             
+  overflow:hidden;                                 
+  z-index:2;                                       
+}     
+
