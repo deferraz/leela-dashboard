@@ -5,9 +5,9 @@ metrics:
     - apache_default.req/s
 
 cluster_group:
-    - Apache Clusters
+    - ApacheClusters
 
-pulley:
+ApacheClusters:
     - cluster01
     - cluster02
 
