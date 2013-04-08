@@ -4,6 +4,8 @@ metrics:
     - cpu.cpu.user
     - apache_default.req/s
 
+leelaurl: http://myleelaurl.com/
+
 cluster_group:
     - ApacheClusters
 
