@@ -1,11 +1,11 @@
 {% extends "index.html" %}
 {% block content %}
-    {% for farm in cvalues['pulley'] %}
-    <div id="load_pulley_{{ farm }}" style="width: 100%; height: 450px; margin: 8px auto;"></div>
+    {% for farm in cvalues[cluster] %}
+    <div id="load_cluster_{{ farm }}" style="width: 100%; height: 450px; margin: 8px auto;"></div>
     {% if legend != False %}
-        <div id="load_pulley_{{ farm }}_legend"></div>
+        <div id="load_cluster_{{ farm }}_legend"></div>
         {% else %}
-        <div id="load_pulley_{{ farm }}_legend" style="display: none;"></div>
+        <div id="load_cluster_{{ farm }}_legend" style="display: none;"></div>
     {% endif %}
     {% endfor %}
     <script type="text/javascript" src="https://raw.github.com/HumbleSoftware/Flotr2/master/flotr2.min.js"></script>
@@ -27,17 +27,17 @@
     var res = 60;
     var yformatter = function (n) { return(n); };
 
-    {% for farm in cvalues['pulley'] %}
+    {% for farm in cvalues[cluster] %}
 
-    var widget = LEELA.widget(jQuery("#load_pulley_{{ farm }}"), 
+    var widget = LEELA.widget(jQuery("#load_cluster_{{ farm }}"), 
                     { yaxis: { labels: { formatter: yformatter }, min: 0 },
                     grid: { verticalLines: false },
                     chart:  { type: "lines" },
-                    legend: { container: $("#load_pulley_{{ farm }}_legend") },
-                    title: "Load Pulley {{ farm }}"
+                    legend: { container: $("#load_cluster_{{ farm }}_legend") },
+                    title: "Load Average {{ farm }}"
                 });
 
-    var key  = "{{ cvalues[farm]|join(".loadavg.1, ") }}";
+    var key  = "{{ cvalues[farm]|join('.loadavg.1, ') }}.loadavg.1";
     var keys = key.split(", "); 
     jQuery("#key").val(key);
     jQuery("#resolution").val(res);
