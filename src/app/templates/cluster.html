@@ -2,17 +2,17 @@
 
 {% block content %}
     {% for metric in cvalues['metrics'] %}
-    <div id="{{ metric|replace('.','_') }}_pulley_{{ farm }}" style="width: 100%; height: 450px; margin: 8px auto;"></div>
+    <div id="{{ metric|replace('.','_') }}_{{ farm }}" style="width: 100%; height: 450px; margin: 8px auto;"></div>
     {% if legend != False %}
-        <div id="{{ metric|replace('.','_') }}_pulley_{{ farm }}_legend"></div>
+        <div id="{{ metric|replace('.','_') }}_{{ farm }}_legend"></div>
         {% else %}
-        <div id="{{ metric|replace('.','_') }}_pulley_{{ farm }}_legend" style="display: none;"></div>
+        <div id="{{ metric|replace('.','_') }}_{{ farm }}_legend" style="display: none;"></div>
     {% endif %}
     {% endfor %}
-    <script type="text/javascript" src="https://raw.github.com/HumbleSoftware/Flotr2/master/flotr2.min.js"></script>
+    <script type="text/javascript" src="/static/leela/flotr2.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.js"></script>
-    <script type="text/javascript" src="https://raw.github.com/locaweb/leela-client/master/src/javascript/widget/flotr2_backend.js"></script>
-    <script type="text/javascript" src="https://raw.github.com/locaweb/leela-client/master/src/javascript/widget/leela-widget.min.js"></script>
+    <script type="text/javascript" src="/static/leela/flotr2_backend.js"></script>
+    <script type="text/javascript" src="/static/leela/leela-widget.min.js"></script>
 
     <script type="text/javascript">
     var qparam = function (name, defval) {
@@ -29,15 +29,15 @@
     var yformatter = function (n) { return(n); };
 
     {% for metric in cvalues['metrics'] %}
-    var widget = LEELA.widget(jQuery("#{{ metric|replace('.','_') }}_pulley_{{ farm }}"), 
+    var widget = LEELA.widget(jQuery("#{{ metric|replace('.','_') }}_{{ farm }}"), 
                     { yaxis: { labels: { formatter: yformatter }, min: 0 },
                     grid: { verticalLines: false },
                     chart:  { type: "lines" },
-                    legend: { container: $("#{{ metric|replace('.','_') }}_pulley_{{ farm }}_legend") },
-                    title: "{{ metric }} Pulley {{ farm }}"
+                    legend: { container: $("#{{ metric|replace('.','_') }}_{{ farm }}_legend") },
+                    title: "{{ metric }} {{ farm }}"
                 });
 
-    var key   = "{{ cvalues[farm]|join('.%s, ' % metric) }}. {{ metric }}";
+    var key   = "{{ cvalues[farm]|join('.%s, ' % metric) }}.{{ metric }}";
     var keys  = key.split(", ");
     jQuery("#key").val(key);
     jQuery("#resolution").val(res);
