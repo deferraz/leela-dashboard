@@ -19,6 +19,10 @@ def index():
     return render_template('index.html',
             cvalues = cvalues)
 
+@app.route('/static/<path:filename>')
+def base_static(filename):
+        return send_from_directory(app.root_path + '/static/', filename)
+
 @app.route('/server')
 def server():
     servername = request.args.get('servername', None)
@@ -51,4 +55,4 @@ def pulley(cluster=None, farm=None):
                     farm    = farm)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True, port=80)
+    app.run(host='0.0.0.0', debug=True, port=8080)

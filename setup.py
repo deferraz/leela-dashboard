@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name         = 'leela-dashboard',
-    version      = '0.1',
+    version      = '0.2',
     description  = 'Simple Dashboard for Leela System',
     author       = 'Andre Ferraz',
     author_email = 'deferraz@terra.com.br',

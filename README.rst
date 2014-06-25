@@ -33,10 +33,9 @@ cluster02:
     - myserver08
 
 
-
 Version
 ======
-$version 0.1
+$version 0.2
 
 License
 ======

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <title>Dashboard CTLinux</title>
+    <title>Leela Dashboard</title>
     <link rel="stylesheet" type="text/css" href="http://developer.locaweb.com.br/assets/0.46.0/locastyle.css">
     <script type="text/javascript" src="http://developer.locaweb.com.br/assets/0.46.0/locastyle.js"></script>
 </head>
@@ -15,12 +15,12 @@
 
     <menu id="menuPrincipal">
         <ul>
-            <li class="selected"><a href="/" class="ico-home">Home</a></li>
+            <li><a href="/" class="ico-home">Home</a></li>
             {% for cluster in cvalues['cluster_group'] %}
             <li><a href="/cluster_group/{{ cluster }}" class="ico-cloud">{{ cluster }}</a>
             <ul>
                 {% for farm in cvalues[cluster] %}
-                    <li><a href="/cluster_group/{{ cluster }}/{{ farm }}">{{ farm }}</a>
+                    <li><a href="/cluster_group/{{ cluster }}/{{ farm }}">{{ farm }}</a></li>
                 {% endfor %}
             </ul>
             </li>
@@ -29,7 +29,7 @@
                 <form action="/server">
                 <div class="input-prepend">
                     <span class="add-on">Search</span>
-                    <input name="servername" type="text">
+                    <input name="servername" type="text" placeholder="Hostname..">
                 </div>
                 </form>
             </li>
@@ -38,8 +38,6 @@
 </header>
 
 {% block content %}{% endblock %}
-
-
 
 </body>
 </html>

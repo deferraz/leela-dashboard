@@ -10,10 +10,10 @@
         <div id="{{ metric|replace('.','_') }}_{{ servername }}_legend" style="display: none;"></div>
     {% endif %}
     {% endfor %}
-    <script type="text/javascript" src="https://raw.github.com/HumbleSoftware/Flotr2/master/flotr2.min.js"></script>
+    <script type="text/javascript" src="/static/leela/flotr2.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.js"></script>
-    <script type="text/javascript" src="https://raw.github.com/locaweb/leela-client/master/src/javascript/widget/flotr2_backend.js"></script>
-    <script type="text/javascript" src="https://raw.github.com/locaweb/leela-client/master/src/javascript/widget/leela-widget.min.js"></script>
+    <script type="text/javascript" src="/static/leela/flotr2_backend.js"></script>
+    <script type="text/javascript" src="/static/leela/leela-widget.min.js"></script>
 
     <script type="text/javascript">
     var qparam = function (name, defval) {
@@ -35,7 +35,7 @@
                     grid: { verticalLines: false },
                     chart:  { type: "lines" },
                     legend: { container: $("#{{ metric|replace('.','_') }}_{{ servername }}_legend") },
-                    title: "{{ metric }} Pulley {{ servername }}"
+                    title: "{{ metric }} {{ servername }}"
                 });
 
     var key   = "{{ servername }}.{{ metric }}";
